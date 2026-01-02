@@ -3,76 +3,280 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <!-- SEO Meta Tags -->
+    <title>CYBERFICTION | The Real Story in the Metaverse</title>
+    <meta name="description" content="CYBERFICTION is a decentralized community creating new values and profits through play in the virtual world. Join the metaverse revolution.">
+    <meta name="keywords" content="metaverse, NFT, virtual world, decentralized, community, gaming, web3">
+    <meta name="author" content="CYBERFICTION">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cyberfiction.io/">
+    <meta property="og:title" content="CYBERFICTION | The Real Story in the Metaverse">
+    <meta property="og:description" content="A decentralized community creating new values through play in the virtual world.">
+    <meta property="og:image" content="./male0001.png">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CYBERFICTION | The Real Story in the Metaverse">
+    <meta name="twitter:description" content="A decentralized community creating new values through play in the virtual world.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./male0001.png">
+    <link rel="apple-touch-icon" href="./male0001.png">
+    
+    <!-- Preload critical assets -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Styles -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#050505">
+    <meta name="msapplication-navbutton-color" content="#050505">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-capable" content="yes">
 </head>
 <body>
-    <div id="nav">
-        <h3><b>CYBER</b>FICTION*</h3>
-        <button>APRIL,2023</button>
-    </div>
-    <div id="main">
-        <div id="page">
-            <div id="loop">
-                <h1><b>CYBER</b>FICTION IS THE <b><i>REAL</i></b> <span>STORY</span> IN THE <span><i>METAVERSE.</i></span></h1>
-                <h1><b>CYBER</b>FICTION IS THE <b><i>REAL</i></b> <span>STORY</span> IN THE <span><i>METAVERSE.</i></span></h1>
-                <h1><b>CYBER</b>FICTION IS THE <b><i>REAL</i></b> <span>STORY</span> IN THE <span><i>METAVERSE.</i></span></h1>
+    <!-- Cursor (Desktop only) -->
+    <div id="cursor" aria-hidden="true"></div>
+    <div id="cursor-blur" aria-hidden="true"></div>
+
+    <!-- Loading Screen -->
+    <div id="loader" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <span class="cyber">CYBER</span><span>FICTION</span>
             </div>
-            <h3>CYBERFICTION AIMS TO BE A DECENTRALIZED COMMUNITY THAT CAN <br> CREATE NEW VALUES AND PROFITS THROUGH PLAY IN THE VIRTUAL <br> WORLD.</h3>
-            <h4>...SCROLL TO READ</h4>
-            <canvas></canvas>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+            <p class="loader-text">Entering the metaverse... <span id="loader-percent">0</span>%</p>
+            <div class="loader-hint">Please wait while we load your experience</div>
         </div>
-        <div id="page1">
+        <div class="loader-bg-text" aria-hidden="true">METAVERSE</div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+        <div class="mobile-menu-content">
+            <a href="#" class="mobile-link">About</a>
+            <a href="#" class="mobile-link">Community</a>
+            <a href="#" class="mobile-link">Roadmap</a>
+            <a href="#" class="mobile-link">FAQ</a>
+            <button class="mobile-cta">ENTER METAVERSE</button>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="nav" role="navigation" aria-label="Main navigation">
+        <div class="nav-left">
+            <a href="/" class="logo" aria-label="CYBERFICTION Home">
+                <span class="cyber">CYBER</span>FICTION*
+            </a>
+        </div>
+        <div class="nav-center" role="menubar">
+            <a href="#" class="nav-link" role="menuitem">About</a>
+            <a href="#" class="nav-link" role="menuitem">Community</a>
+            <a href="#" class="nav-link" role="menuitem">Roadmap</a>
+            <a href="#" class="nav-link" role="menuitem">FAQ</a>
+        </div>
+        <div class="nav-right">
+            <button class="nav-btn magnetic" aria-label="Enter Metaverse">
+                <span>ENTER METAVERSE</span>
+                <svg width="13" height="10" viewBox="0 0 13 10" aria-hidden="true">
+                    <path d="M1,5 L11,5 M8,1 L12,5 L8,9" stroke="currentColor" fill="none" stroke-width="2"/>
+                </svg>
+            </button>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main" role="main">
+        <!-- Hero Section -->
+        <section id="page" aria-label="Hero">
+            <div id="loop" aria-hidden="true">
+                <h1><span class="cyber">CYBER</span>FICTION IS THE <em>REAL</em> <span class="outline">STORY</span> IN THE <span class="outline"><em>METAVERSE.</em></span></h1>
+                <h1><span class="cyber">CYBER</span>FICTION IS THE <em>REAL</em> <span class="outline">STORY</span> IN THE <span class="outline"><em>METAVERSE.</em></span></h1>
+                <h1><span class="cyber">CYBER</span>FICTION IS THE <em>REAL</em> <span class="outline">STORY</span> IN THE <span class="outline"><em>METAVERSE.</em></span></h1>
+            </div>
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="pulse" aria-hidden="true"></span>
+                    <span>NOW LIVE</span>
+                </div>
+                <p class="hero-description">CYBERFICTION AIMS TO BE A DECENTRALIZED COMMUNITY THAT CAN CREATE NEW VALUES AND PROFITS THROUGH PLAY IN THE VIRTUAL WORLD.</p>
+                <div class="scroll-indicator" aria-hidden="true">
+                    <div class="scroll-mouse">
+                        <div class="scroll-wheel"></div>
+                    </div>
+                    <span>SCROLL TO EXPLORE</span>
+                </div>
+            </div>
+            <div class="hero-stats" aria-label="Statistics">
+                <div class="stat">
+                    <span class="stat-number" data-value="10000">0</span>
+                    <span class="stat-label">COMMUNITY MEMBERS</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" data-value="300">0</span>
+                    <span class="stat-label">UNIQUE AVATARS</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" data-value="50">0</span>
+                    <span class="stat-label">VIRTUAL WORLDS</span>
+                </div>
+            </div>
+            <canvas aria-hidden="true"></canvas>
+        </section>
+
+        <!-- Keywords Section -->
+        <section id="page1" aria-label="Keywords">
+            <div class="page-header">
+                <span class="section-tag">01</span>
+                <div class="section-line" aria-hidden="true"></div>
+                <h2>CYBERFICTION / KEY WORDS</h2>
+            </div>
             <div id="right-text">
-                <h3>CYBERFICTION / KEY WORD</h3>
-                <h1>HAVE FUN
-                    <br>
-                    LET'S PLAY
-                    <br>
-                    JUST BE TOGETHER</h1>
+                <p class="large-heading">
+                    <span class="text-reveal"><span class="text-inner">HAVE FUN</span></span>
+                    <span class="text-reveal"><span class="text-inner">LET'S PLAY</span></span>
+                    <span class="text-reveal"><span class="text-inner">JUST BE TOGETHER</span></span>
+                </p>
             </div>
             <div id="left-text">
-                <h1>MAKE A STORY
-                    <br>
-                    TAKE A CHANCE
-                    <br>
-                    BUILD AND OWNED</h1>
-                    <h3>..AND MAINTAIN GOOD HUMANITY</h3>
+                <p class="large-heading">
+                    <span class="text-reveal"><span class="text-inner">MAKE A STORY</span></span>
+                    <span class="text-reveal"><span class="text-inner">TAKE A CHANCE</span></span>
+                    <span class="text-reveal"><span class="text-inner">BUILD AND OWN</span></span>
+                </p>
+                <p class="fade-text">...AND MAINTAIN GOOD HUMANITY</p>
             </div>
-        </div>
-        <div id="page2">
+            <div class="floating-shapes" aria-hidden="true">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+            </div>
+        </section>
+
+        <!-- Have Fun Section -->
+        <section id="page2" aria-label="Have Fun">
+            <div class="page-header">
+                <span class="section-tag">02</span>
+                <div class="section-line" aria-hidden="true"></div>
+                <h2>CYBERFICTION / HAVE FUN</h2>
+            </div>
             <div id="text1">
-                <h3>CYBERFICTION / HAVE FUN</h3>
-                <h1>LET'S
-                    <br>
-                    HAVE FUN
-                    <br>
-                    TOGETHER</h1>
+                <p class="large-heading">
+                    <span class="text-reveal"><span class="text-inner">LET'S</span></span>
+                    <span class="text-reveal"><span class="text-inner">HAVE FUN</span></span>
+                    <span class="text-reveal"><span class="text-inner">TOGETHER</span></span>
+                </p>
             </div>
             <div id="text2">
-                <p>LET'S HAVE A BLAST! LET'S JUST THROW AWAY AGE, GENDER, REGION, <br> STATUS, ETC., DON'T COMPETE, DON'T FIGHT, COOPERATE AND SHARE <br> WITH EACH OTHER AND ENJOY IT TOGETHER! SO THAT YOU CAN STAND <br> THERE IN THE NOT-TOO-DISTANT FUTURE AND DREAM OF ANOTHER NEW <br> FUTURE</p>
+                <p class="large-text">LET'S HAVE A BLAST!</p>
+                <p>Let's just throw away age, gender, region, status. Don't compete, don't fight. Cooperate and share with each other and enjoy it together!</p>
+                <p class="highlight">So that you can stand there in the not-too-distant future and dream of another new future.</p>
             </div>
-        </div>
-        <div id="page3">
-            <div id="text3">
-                <h3>CYBERFICTION / PLAYGROUND</h3>
-                <h1>
+            <button class="video-preview magnetic" aria-label="Watch trailer video">
+                <div class="video-play" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                </div>
+                <span>Watch Trailer</span>
+            </button>
+        </section>
 
-CYBERFIELD
-<br>
-IS OUR
-<br>
-PLAYGROUND
-                </h1>
-               
+        <!-- Playground Section -->
+        <section id="page3" aria-label="Playground">
+            <div class="page-header">
+                <span class="section-tag">03</span>
+                <div class="section-line" aria-hidden="true"></div>
+                <h2>CYBERFICTION / PLAYGROUND</h2>
             </div>
-        </div>
-    </div>
+            <div id="text3">
+                <p class="large-heading center">
+                    <span class="text-reveal"><span class="text-inner glitch" data-text="CYBERFIELD">CYBERFIELD</span></span>
+                    <span class="text-reveal"><span class="text-inner">IS OUR</span></span>
+                    <span class="text-reveal"><span class="text-inner glitch" data-text="PLAYGROUND">PLAYGROUND</span></span>
+                </p>
+                <div class="cta-group">
+                    <button class="btn-primary magnetic">
+                        <span>JOIN THE COMMUNITY</span>
+                        <div class="btn-bg" aria-hidden="true"></div>
+                    </button>
+                    <button class="btn-secondary magnetic">
+                        <span>LEARN MORE</span>
+                    </button>
+                </div>
+            </div>
+            <div class="grid-bg" aria-hidden="true"></div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer" role="contentinfo">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <h2><span class="cyber">CYBER</span>FICTION</h2>
+                    <p>The real story in the metaverse</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h3>Explore</h3>
+                        <a href="#">About Us</a>
+                        <a href="#">Roadmap</a>
+                        <a href="#">Whitepaper</a>
+                    </div>
+                    <div class="footer-col">
+                        <h3>Community</h3>
+                        <a href="#">Discord</a>
+                        <a href="#">Twitter</a>
+                        <a href="#">Telegram</a>
+                    </div>
+                    <div class="footer-col">
+                        <h3>Resources</h3>
+                        <a href="#">FAQ</a>
+                        <a href="#">Support</a>
+                        <a href="#">Terms</a>
+                    </div>
+                </div>
+                <div class="footer-newsletter">
+                    <h3>Stay Updated</h3>
+                    <form class="newsletter-form" aria-label="Newsletter signup">
+                        <label for="email-input" class="visually-hidden">Email address</label>
+                        <input type="email" id="email-input" placeholder="Enter your email" required>
+                        <button type="submit" class="magnetic" aria-label="Subscribe">→</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 CYBERFICTION. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link magnetic" aria-label="Twitter">𝕏</a>
+                    <a href="#" class="social-link magnetic" aria-label="Discord">DC</a>
+                    <a href="#" class="social-link magnetic" aria-label="Telegram">TG</a>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js" integrity="sha512-cOH8ndwGgPo+K7pTvMrqYbmI8u8k6Sho3js0gOqVWTmQMlLIi6TbqGWRTpf1ga8ci9H3iPsvDLr4X7xwhC/+DQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js" integrity="sha512-AMl4wfwAmDM1lsQvVBBRHYENn1FR8cfOTpt8QVbb/P55mYOdahHD4LmHM1W55pNe3j/3od8ELzPf/8eNkkjISQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
